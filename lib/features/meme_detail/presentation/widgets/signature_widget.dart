@@ -36,11 +36,14 @@ class _SignatureWidgetState extends State<SignatureWidget> {
               padding: const EdgeInsets.all(6),
               height: context.height * 0.15,
               width: context.width * 0.5,
-              color: Colors.black.withOpacity(0.2),
+              color: Colors.black.withOpacity(0.1),
               child: Stack(fit: StackFit.passthrough, children: [
                 bytes.isNotEmpty ? Image.memory(bytes) : Container(),
-                const Align(
-                    alignment: Alignment.topRight, child: Icon(Icons.edit)),
+                Align(
+                    alignment: Alignment.topRight,
+                    child: bytes.isNotEmpty
+                        ? const Icon(Icons.edit)
+                        : const Icon(Icons.add)),
               ]),
             ),
           );

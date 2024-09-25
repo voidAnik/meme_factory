@@ -7,10 +7,11 @@ class CustomNetworkImage extends StatelessWidget {
   final double height;
   final String imageUrl;
   final BoxFit fit;
+
   const CustomNetworkImage(
       {super.key,
-      required this.width,
-      required this.height,
+      this.width = double.infinity,
+      this.height = double.infinity,
       required this.imageUrl,
       this.fit = BoxFit.cover});
 
