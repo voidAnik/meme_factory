@@ -1,0 +1,64 @@
+name: meme_factory
+description: "A Flutter demo project using meme api."
+
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.4.3 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+  cupertino_icons: ^1.0.8
+  # for fonts
+  google_fonts: ^6.2.1
+  # service locator
+  get_it: ^8.0.0
+  # Value equality
+  equatable: ^2.0.5
+  # Functional programming things
+  dartz: ^0.10.1
+  # to check internet connection
+  internet_connection_checker: ^1.0.0+1
+  # Remote API
+  dio: ^5.7.0
+  pretty_dio_logger: ^1.4.0
+  # for state management
+  flutter_bloc: ^8.1.6
+
+  # to cache network images
+  cached_network_image: ^3.4.1 # if update it conflicts with updated firebase_core
+  # for shimmer effect
+  shimmer: ^3.0.0
+  # for route management
+  go_router: ^14.2.8
+  # for slide view
+  carousel_slider: ^5.0.0
+  # to create a image shape
+  shape_of_view_null_safe: ^3.0.0
+  # for lottie animation
+  lottie: ^3.1.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^4.0.0
+
+
+
+
+flutter:
+
+
+  uses-material-design: true
+
+  assets:
+    - assets/animations/
+
+  # An image asset can refer to one or more resolution-specific "variants", see
+  # https://flutter.dev/assets-and-images/#resolution-aware
+
