@@ -70,20 +70,18 @@ class MemeListWidget extends StatelessWidget {
   }
 
   Widget _createShimmerList(BuildContext context, int length) {
-    return Expanded(
-      child: GridView.builder(
-        shrinkWrap: true,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2, // number of items in each row
-            mainAxisSpacing: 8.0, // spacing between rows
-            crossAxisSpacing: 8.0, // spacing between columns
-            childAspectRatio: 0.8),
-        padding: const EdgeInsets.all(8.0), // padding around the grid
-        itemCount: length, // total number of items
-        itemBuilder: (context, index) {
-          return const ShimmerGridItem();
-        },
-      ),
+    return GridView.builder(
+      shrinkWrap: true,
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2, // number of items in each row
+          mainAxisSpacing: 8.0, // spacing between rows
+          crossAxisSpacing: 8.0, // spacing between columns
+          childAspectRatio: 0.8),
+      padding: const EdgeInsets.all(8.0), // padding around the grid
+      itemCount: length, // total number of items
+      itemBuilder: (context, index) {
+        return const ShimmerGridItem();
+      },
     );
   }
 }

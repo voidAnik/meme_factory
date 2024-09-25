@@ -52,7 +52,7 @@ class _SignatureWidgetState extends State<SignatureWidget> {
     );
   }
 
-  void openSignatureEditor(BuildContext context) async {
+  void openSignatureEditor(BuildContext context) {
     showDialog<Uint8List>(
       context: context,
       builder: (context) => SignatureEditorDialog(controller: _controller),

@@ -28,6 +28,9 @@ dependencies:
   pretty_dio_logger: ^1.4.0
   # for state management
   flutter_bloc: ^8.1.6
+  # for local database
+  sqflite: ^2.3.3+1
+  path: ^1.9.0
 
   # to cache network images
   cached_network_image: ^3.4.1 # if update it conflicts with updated firebase_core

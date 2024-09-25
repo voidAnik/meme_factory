@@ -2,9 +2,11 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:meme_factory/core/constants/strings.dart';
 import 'package:meme_factory/core/extensions/context_extension.dart';
 import 'package:meme_factory/core/widgets/error_widget.dart';
+import 'package:meme_factory/features/meme_detail/presentation/pages/meme_details_page.dart';
 import 'package:meme_factory/features/memes/blocs/meme_data_state.dart';
 import 'package:meme_factory/features/memes/blocs/meme_search_cubit.dart';
 import 'package:meme_factory/features/memes/data/models/meme.dart';
@@ -122,6 +124,6 @@ class MemeSearchDelegate extends SearchDelegate<Meme> {
   }
 
   _navigateToMovieDetailPage(BuildContext context, {required Meme meme}) {
-    //context.push(MovieDetailsPage.path, extra: movie);
+    context.push(MemeDetailsPage.path, extra: meme);
   }
 }
