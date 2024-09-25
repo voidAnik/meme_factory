@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -14,10 +12,9 @@ import 'package:meme_factory/features/memes/presentation/widgets/meme_list_tile_
 import 'package:meme_factory/features/memes/presentation/widgets/shimmer_list_item.dart';
 
 class MemeSearchDelegate extends SearchDelegate<Meme> {
-  final MemeSearchCubit searchCubit;
-  bool _hasSearched = false;
+  final MemeSearchCubit _searchCubit;
 
-  MemeSearchDelegate(this.searchCubit);
+  MemeSearchDelegate(this._searchCubit);
 
   @override
   List<Widget> buildActions(BuildContext context) {
@@ -26,7 +23,7 @@ class MemeSearchDelegate extends SearchDelegate<Meme> {
         icon: const Icon(Icons.clear),
         onPressed: () {
           query = '';
-          searchCubit.reset();
+          _searchCubit.reset(); // Clear query and reset search results
         },
       ),
     ];
@@ -42,17 +39,23 @@ class MemeSearchDelegate extends SearchDelegate<Meme> {
 
   @override
   Widget buildResults(BuildContext context) {
-    // Trigger the search when results are built
+    return _searchBody(); // Build results from the search cubit state
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
     if (query.isNotEmpty) {
-      log('searching...');
-      searchCubit.search(query: query); // Trigger search on submit
+      _searchCubit.search(query: query);
+    } else {
+      _searchCubit.reset();
     }
+
     return _searchBody();
   }
 
   BlocBuilder<MemeSearchCubit, MemeDataState> _searchBody() {
     return BlocBuilder<MemeSearchCubit, MemeDataState>(
-      bloc: searchCubit,
+      bloc: _searchCubit,
       builder: (context, state) {
         if (state is MemeLoading) {
           return _createShimmerList(5);
@@ -60,12 +63,10 @@ class MemeSearchDelegate extends SearchDelegate<Meme> {
           final List<Meme> memes = state.memes;
 
           if (memes.isEmpty) {
-            //return const Center(child: Text('No movies found.'));
             return const ErrorMessage(
               message: AppStrings.noMeme,
             );
           }
-          _hasSearched = true;
           return _createSearchList(memes);
         } else if (state is MemeError) {
           return ErrorMessage(message: state.message);
@@ -83,10 +84,11 @@ class MemeSearchDelegate extends SearchDelegate<Meme> {
       itemBuilder: (context, index) {
         final meme = memes[index];
         return MemeListTileWidget(
-            onPressed: () {
-              _navigateToMovieDetailPage(context, meme: memes[index]);
-            },
-            meme: meme);
+          onPressed: () {
+            _navigateToMemeDetailPage(context, meme: meme);
+          },
+          meme: meme,
+        );
       },
     );
   }
@@ -99,15 +101,6 @@ class MemeSearchDelegate extends SearchDelegate<Meme> {
         return const ShimmerListItem();
       },
     );
-  }
-
-  @override
-  Widget buildSuggestions(BuildContext context) {
-    if (_hasSearched) {
-      return _searchBody();
-    } else {
-      return _searchMessage(context, AppStrings.searchHint);
-    }
   }
 
   Widget _searchMessage(BuildContext context, String text) {
@@ -123,7 +116,7 @@ class MemeSearchDelegate extends SearchDelegate<Meme> {
     );
   }
 
-  _navigateToMovieDetailPage(BuildContext context, {required Meme meme}) {
+  void _navigateToMemeDetailPage(BuildContext context, {required Meme meme}) {
     context.push(MemeDetailsPage.path, extra: meme);
   }
 }
