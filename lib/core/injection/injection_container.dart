@@ -1,6 +1,5 @@
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
-import 'package:meme_factory/core/blocs/theme_cubit.dart';
 import 'package:meme_factory/core/database/database_helper.dart';
 import 'package:meme_factory/core/database/meme_dao.dart';
 import 'package:meme_factory/core/network/api_client.dart';
@@ -21,8 +20,6 @@ Future<void> init() async {
     ..registerLazySingleton(() => ApiClient())
     ..registerLazySingleton(() => InternetConnectionChecker())
     ..registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(getIt()));
-
-  getIt.registerFactory(() => ThemeCubit());
 
   //? database
   getIt
