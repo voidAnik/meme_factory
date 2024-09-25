@@ -6,6 +6,7 @@ import 'package:meme_factory/core/injection/injection_container.dart';
 import 'package:meme_factory/core/widgets/error_widget.dart';
 import 'package:meme_factory/features/memes/blocs/meme_data_state.dart';
 import 'package:meme_factory/features/memes/blocs/meme_list_cubit.dart';
+import 'package:meme_factory/features/memes/blocs/meme_search_cubit.dart';
 import 'package:meme_factory/features/memes/data/models/meme.dart';
 import 'package:meme_factory/features/memes/presentation/widgets/meme_grid_item_widget.dart';
 import 'package:meme_factory/features/memes/presentation/widgets/shimmer_grid_item.dart';
@@ -31,6 +32,7 @@ class MemeListWidget extends StatelessWidget {
         return ErrorMessage(message: state.message);
       } else if (state is MemeLoaded) {
         final memes = state.memes;
+        context.read<MemeSearchCubit>().loadMemes(memes);
         return _createMemeList(context, memes);
       } else {
         return const Spacer();

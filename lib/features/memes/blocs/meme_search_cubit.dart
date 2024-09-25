@@ -7,7 +7,8 @@ class MemeSearchCubit extends Cubit<MemeDataState> {
 
   final List<Meme> memeList = [];
 
-  void loadData(List<Meme> memes) {
+  void loadMemes(List<Meme> memes) {
+    memeList.clear();
     memeList.addAll(memes);
   }
 
