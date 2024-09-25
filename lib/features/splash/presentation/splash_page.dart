@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:meme_factory/core/constants/assets.dart';
+import 'package:meme_factory/core/constants/strings.dart';
+import 'package:meme_factory/core/extensions/context_extension.dart';
 import 'package:meme_factory/features/memes/presentation/page/meme_list_page.dart';
 
 class SplashPage extends StatefulWidget {
@@ -30,12 +33,28 @@ class _SplashPageState extends State<SplashPage> {
 
   _createBody(BuildContext context) {
     return Center(
-      child: Lottie.asset(
-        Assets
-            .animationsMemesLoading, // Replace with your local Lottie animation file
-        width: 200,
-        height: 200,
-        fit: BoxFit.contain,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Lottie.asset(
+            Assets
+                .animationsMemesLoading, // Replace with your local Lottie animation file
+            width: 200,
+            height: 200,
+            fit: BoxFit.contain,
+          ),
+          const SizedBox(
+            height: 24,
+          ),
+          Hero(
+            tag: 'title',
+            child: Text(
+              AppStrings.title,
+              style: GoogleFonts.aldrich(
+                  fontSize: context.width * 0.07, color: Colors.red),
+            ),
+          ),
+        ],
       ),
     );
   }

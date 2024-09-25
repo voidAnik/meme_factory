@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
             routerConfig: RouterManager.config,
             debugShowCheckedModeBanner: false,
             title: AppStrings.title,
-            themeMode: themeMode,
+            themeMode: ThemeMode.system,
             theme: AppTheme.lightTheme,
             darkTheme: AppTheme.darkTheme,
           );

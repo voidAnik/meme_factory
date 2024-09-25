@@ -34,10 +34,13 @@ class MemeListPage extends StatelessWidget {
     final searchCubit = context.read<MemeSearchCubit>();
     return AppBar(
       automaticallyImplyLeading: false,
-      title: Text(
-        AppStrings.title,
-        style: GoogleFonts.aldrich(
-            fontSize: context.width * 0.05, color: Colors.red),
+      title: Hero(
+        tag: 'title',
+        child: Text(
+          AppStrings.title,
+          style: GoogleFonts.aldrich(
+              fontSize: context.width * 0.05, color: Colors.red),
+        ),
       ),
       actions: [
         Container(
